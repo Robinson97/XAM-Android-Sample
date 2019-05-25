@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.Hardware.Display;
-using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 
 namespace XAM_Android_AR_Sample
 {
@@ -79,9 +72,30 @@ namespace XAM_Android_AR_Sample
 
         }
 
-        public void UpdateSessionIfNeeded()
+        /// <summary>
+        /// Updates the session display geometry if a change was posted either by
+        /// {@link #onSurfaceChanged(int, int)} call or by {@link #onDisplayChanged(int)} system
+        ///callback.This function should be called explicitly before each call to
+        ///{@link Session#update()}. This function will also clear the 'pending update' (viewportChanged)flag.
+        /// </summary>
+        /// <param name="session">object to update if display geometry changed</param>
+        public void UpdateSessionIfNeeded(Google.AR.Core.Session session)
         {
+            if (_mViewportChanged)
+            {
+                int displayRotation = (int)_mDisplay.Rotation;
+                session.SetDisplayGeometry(displayRotation, _mViewPortWidth, _mViewPortHeigth);
+                _mViewportChanged = false;
+            }
+        }
 
+        /// <summary>
+        /// Returns the current rotation state of android display
+        /// </summary>
+        /// <returns>The current rotation state of android display</returns>
+        public int GetLocation()
+        {
+            return (int)_mDisplay.Rotation;
         }
 
 
