@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DisplayRotationHelper.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Rendering\BackgroundRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
